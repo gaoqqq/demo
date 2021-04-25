@@ -115,6 +115,17 @@ export default new Router({
                     component: () => import(/* webpackChunkName: "dashboard" */ '../view/litig/litigInfoDetail.vue'),
                     meta: { title: '诉讼记录' }
                 },
+                {
+                    path: '/caseIndex',
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../view/caseManagement/caseIndex.vue'),
+                    meta: { title: '案件管理' }
+                },
+                {
+                    path: '/caseDetails',
+                    name: 'caseDetails',
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../view/caseManagement/caseDetails.vue'),
+                    meta: { title: '案件查看' }
+                },
                 // end
 
 

@@ -134,7 +134,7 @@ export default {
             str: '查看资产包',
             clientW: '',
             clientWTwo: '',
-            activeName: 'second',
+            activeName: 'first',
             height: '',
             tableData: [],
             rules: {},
