@@ -1,0 +1,40 @@
+{
+    "list": [{
+            "agencyNo": "0035432",
+            "agencyName": "中科金融",
+            "bankAccountName": "北京西海管理资产有限公司",
+            "bank": "北京建设银行白石桥南支行",
+            "bankAccount": "6226660200197653981",
+            "head": "张浩",
+            "contact": "13651350908",
+            "office": "沈阳市和平区3号院",
+            "state": "启用",
+            "createTime": "2020-03-01 15:00"
+        },
+        {
+            "agencyNo": "0035433",
+            "agencyName": "汇通金融公司",
+            "bankAccountName": "北京光大管理资产有限公司",
+            "bank": "北京交通银行回龙观支行",
+            "bankAccount": "6233411208017891373",
+            "head": "张浩",
+            "contact": "13651350908",
+            "office": "北京市曙光西里",
+            "state": "停用",
+            "createTime": "2020-03-02 12:00"
+        },
+        {
+            "agencyNo": "0035434",
+            "agencyName": "启迪金融公司",
+            "bankAccountName": "启迪金控投资有限公司",
+            "bank": "北京建设银行上地支行",
+            "bankAccount": "6217211107001880725",
+            "head": "杜朋",
+            "contact": "13651350908",
+            "office": "北京市中关村东路1号院",
+            "state": "启用",
+            "createTime": "2020-05-02 12:00"
+        }
+    ],
+    "pageTotal": 3
+}
