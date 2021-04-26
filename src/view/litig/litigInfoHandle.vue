@@ -42,9 +42,9 @@
                                 <template slot-scope="scope"><span class="userName">{{scope.row.b}}</span></template>
                             </el-table-column>
                             <el-table-column label="操作" width="100" align="center">
-                                <template slot-scope="scope">
-                                    <el-button type="text" @click="handleDeta(scope.$index, scope.row)">下载</el-button>
-                                    <el-button type="text" class="red" @click="handleDeta(scope.$index)">删除</el-button>
+                                <template>
+                                    <el-button type="text">下载</el-button>
+                                    <el-button type="text" class="red">删除</el-button>
                                 </template>
                             </el-table-column>
                         </el-table>

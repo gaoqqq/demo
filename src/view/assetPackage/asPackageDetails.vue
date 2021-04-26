@@ -51,8 +51,10 @@
                     诉讼情况
                     <div class="tRight"><span style="background:#2DDEBF;"></span>已诉<span style="background:#FFB64D;"></span>未诉</div>
                 </div>
-                <div class="litigOne"><el-progress type="circle" color="#2DDEBF" :percentage="68"></el-progress></div>
-                <div class="litigTwo"><el-progress type="circle" color="#FFB64D" :percentage="21"></el-progress></div>
+                <!-- <div class="litigOne"><el-progress type="circle" color="#2DDEBF" :percentage="68"></el-progress></div>
+                <div class="litigTwo"><el-progress type="circle" color="#FFB64D" :percentage="21"></el-progress></div> -->
+                <div class="litigOne" id="litigOne"></div>
+                <div class="litigTwo" id="litigTwo"></div>
             </div>
             <div class="userEchBox" id="ageEcharts" :style="clientWTwo"></div>
             <div class="userEchBox litig" :style="clientWTwo">
@@ -127,6 +129,7 @@
 </template>
 <script>
 import { fetchData } from '../../api/index';
+import { RingProgress } from '@antv/g2plot';
 export default {
     name: 'asPackInfo',
     data() {
@@ -134,7 +137,7 @@ export default {
             str: '查看资产包',
             clientW: '',
             clientWTwo: '',
-            activeName: 'second',
+            activeName: 'first',
             height: '',
             tableData: [],
             rules: {},
@@ -164,6 +167,39 @@ export default {
     },
     methods: {
         assetEchartsInit() {
+            const ringProgress = new RingProgress('litigOne', {
+                height: 200,
+                width: 200,
+                autoFit: false,
+                percent: 0.68,
+                color: ['#45C1AC', '#E8EDF3'],
+                innerRadius: 0.85,
+                radius: 0.98,
+                statistic: {
+                    title: {
+                    style: { color: '#363636', fontSize: '12px', lineHeight: '14px' },
+                    formatter: () => '已诉',
+                    },
+                },
+            });
+            ringProgress.render();
+            const ringProTwo = new RingProgress('litigTwo', {
+                height: 200,
+                width: 200,
+                autoFit: false,
+                percent: 0.21,
+                color: ['#F5AA3F', '#E8EDF3'],
+                innerRadius: 0.85,
+                radius: 0.98,
+                statistic: {
+                    title: {
+                    style: { color: '#363636', fontSize: '12px', lineHeight: '14px' },
+                    formatter: () => '未诉',
+                    },
+                },
+            });
+            ringProTwo.render();
+
             let myChart = this.$echarts.init(document.getElementById('assteRece'))
             myChart.setOption({
                 tooltip: {

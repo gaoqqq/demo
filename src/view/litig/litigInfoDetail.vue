@@ -15,8 +15,8 @@
             <el-row class="lit-tabHeader g-row">
                 <el-col :span="4">立案：2021年4月21日</el-col>
                 <el-col :span="12">&nbsp;</el-col>
-                <el-col :span="4">录入时间：2021年4月21日  21:44:04</el-col>
-                <el-col :span="4" class="handle"><span class="green">查看</span><span class="blue">编辑</span><span class="red">删除</span></el-col>
+                <el-col :span="6">录入时间：2021年4月21日  21:44:04</el-col>
+                <el-col :span="2" class="handle"><span class="green" @click="detaRow">查看</span><span class="blue" @click="detaRow">编辑</span><span class="red">删除</span></el-col>
             </el-row>
             <el-row class="g-row">
                 <el-col :span="4"><span class="g-span">诉讼进程：</span>二审</el-col>
@@ -26,8 +26,8 @@
             <el-row class="lit-tabHeader g-row">
                 <el-col :span="4">立案：2021年4月21日</el-col>
                 <el-col :span="12">&nbsp;</el-col>
-                <el-col :span="4">录入时间：2021年4月21日  21:44:04</el-col>
-                <el-col :span="4" class="handle"><span class="green">查看</span><span class="blue">编辑</span><span class="red">删除</span></el-col>
+                <el-col :span="6">录入时间：2021年4月21日  21:44:04</el-col>
+                <el-col :span="2" class="handle"><span class="green" @click="detaRow">查看</span><span class="blue" @click="detaRow">编辑</span><span class="red">删除</span></el-col>
             </el-row>
             <el-row class="g-row">
                 <el-col :span="4"><span class="g-span">诉讼进程：</span>一审</el-col>
@@ -35,6 +35,35 @@
                 <el-col :span="6"><span class="g-span">立案案号：</span>(2020)哈刑初字第2号</el-col>
             </el-row>
         </div>
+        <el-dialog title="诉讼过程详情" :visible.sync="editVisible" width="35%" top="3%">
+            <el-form ref="form" :model="litigForm" label-width="80px" label-position="left">
+                <el-row><el-col :span="20"><el-form-item label="诉讼进程"><el-input v-model="litigForm.process" placeholder="请输入诉讼进程"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20"><el-form-item label="诉讼环节"><el-input v-model="litigForm.link" placeholder="请输入诉讼环节"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20"><el-form-item label="诉讼法院"><el-input v-model="litigForm.court" placeholder="请输入诉讼法院"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20"><el-form-item label="录入时间"><el-input v-model="litigForm.entry" placeholder="请输入录入时间"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20">
+                    <el-form-item label="录入时间">
+                        <el-table
+                            :data="fileList"
+                            class="table"
+                            ref="multipleTable"
+                            header-cell-class-name="table-header"
+                        >   
+                            <el-table-column prop="a" width="120" label="文档类型" align="center"></el-table-column>
+                            <el-table-column label="文件名称" align="center">
+                                <template slot-scope="scope"><span class="userName">{{scope.row.b}}</span></template>
+                            </el-table-column>
+                            <el-table-column label="操作" width="100" align="center">
+                                <template>
+                                    <el-button type="text">下载</el-button>
+                                    <el-button type="text" class="red">删除</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </el-form-item>
+                </el-col></el-row>
+            </el-form>
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -44,7 +73,14 @@ export default {
     data() {
         return {
             height: '',
-            litigForm: {},
+            litigForm: {
+                process: '',
+                link: '',
+                court: '',
+                entry: '',
+            },
+            editVisible: false,
+            fileList: [{a:'开庭公告',b:'张三开庭公告.pdf'}],
         }
     },
     created() {
@@ -60,6 +96,9 @@ export default {
             this.$router.push({
                 path: '/addLitig'
             })
+        },
+        detaRow() {
+            this.editVisible = true;
         },
         getList(id) {
             fetchData({}).then(res => {
@@ -134,7 +173,9 @@ export default {
 }
 .handle span{
     margin-right: 10px;
+    font-size: 12px;
     font-weight: 500;
+    cursor: pointer;
 }
 .g-span{
     font-weight: 500;
