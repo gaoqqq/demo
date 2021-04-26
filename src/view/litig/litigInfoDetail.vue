@@ -15,8 +15,8 @@
             <el-row class="lit-tabHeader g-row">
                 <el-col :span="4">立案：2021年4月21日</el-col>
                 <el-col :span="12">&nbsp;</el-col>
-                <el-col :span="4">录入时间：2021年4月21日  21:44:04</el-col>
-                <el-col :span="4" class="handle"><span class="green" @click="detaRow">查看</span><span class="blue" @click="detaRow">编辑</span><span class="red">删除</span></el-col>
+                <el-col :span="6">录入时间：2021年4月21日  21:44:04</el-col>
+                <el-col :span="2" class="handle"><span class="green" @click="detaRow">查看</span><span class="blue" @click="detaRow">编辑</span><span class="red">删除</span></el-col>
             </el-row>
             <el-row class="g-row">
                 <el-col :span="4"><span class="g-span">诉讼进程：</span>二审</el-col>
@@ -26,8 +26,8 @@
             <el-row class="lit-tabHeader g-row">
                 <el-col :span="4">立案：2021年4月21日</el-col>
                 <el-col :span="12">&nbsp;</el-col>
-                <el-col :span="4">录入时间：2021年4月21日  21:44:04</el-col>
-                <el-col :span="4" class="handle"><span class="green" @click="detaRow">查看</span><span class="blue" @click="detaRow">编辑</span><span class="red">删除</span></el-col>
+                <el-col :span="6">录入时间：2021年4月21日  21:44:04</el-col>
+                <el-col :span="2" class="handle"><span class="green" @click="detaRow">查看</span><span class="blue" @click="detaRow">编辑</span><span class="red">删除</span></el-col>
             </el-row>
             <el-row class="g-row">
                 <el-col :span="4"><span class="g-span">诉讼进程：</span>一审</el-col>
