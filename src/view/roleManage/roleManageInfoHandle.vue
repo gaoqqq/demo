@@ -3,54 +3,23 @@
         <t-title :titleText="str"></t-title>
         <div class="cond-body" :style="height">
             <el-form :model="collectForm" :rules="rules" ref="ruleForm" label-width="120px" label-position="left" class="demo-ruleForm">
-                <el-row><el-col :span="8"><el-form-item label="姓名"><el-input v-model="collectForm.agencyName" placeholder="请填写姓名"></el-input></el-form-item></el-col></el-row>
-                  <el-row><el-col :span="8"><el-form-item label="身份证号"><el-input v-model="collectForm.bankAccount" placeholder="请填写身份证号"></el-input></el-form-item></el-col></el-row>
-                <el-row><el-col :span="8"><el-form-item label="性别">
-                    <el-radio-group v-model="collectForm.gender">
-                        <el-radio label="男"></el-radio>
-                        <el-radio label="女"></el-radio>
-                    </el-radio-group>
+                <el-row><el-col :span="8"><el-form-item label="角色名称"><el-input v-model="collectForm.agencyName" placeholder="请填写姓名"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="8"><el-form-item label="角色描述">
+                    <el-input type="textarea" rows="4" v-model="collectForm.memo" placeholder="请填写角色描述"></el-input>
                 </el-form-item></el-col></el-row>
-                 <el-row><el-col :span="8"><el-form-item label="手机号码"><el-input v-model="collectForm.office" placeholder="请填写手机号码"></el-input></el-form-item></el-col></el-row>
-                 <el-row>
+                <el-row>
                     <el-col :span="8">
-                        <el-form-item label="员工类型">
-                            <el-select v-model="collectForm.name" placeholder="请选择员工类型">
-                                <el-option key="1" label="本部" value="本部"></el-option>
-                                <el-option key="2" label="外部" value="外部"></el-option>
-                            </el-select>
+                        <el-form-item label="权限配置">
+                           <el-tree
+                                :props="props"
+                                :load="loadNode"
+                                lazy
+                                show-checkbox
+                                @check-change="handleCheckChange">
+                            </el-tree>
                         </el-form-item>
-                    </el-col>
+                </el-col>
                 </el-row>
-                 <el-row>
-                    <el-col :span="8">
-                        <el-form-item label="所属团队">
-                            <el-select v-model="collectForm.name" placeholder="请选择员工类型" class="handle-select mr10">
-                                <el-option key="1" label="本部" value="本部"></el-option>
-                                <el-option key="2" label="华行资产" value="华行资产"></el-option>
-                                <el-option key="3" label="中信银行" value="中信银行"></el-option>
-                                <el-option key="4" label="金厚资产" value="金厚资产"></el-option>
-                            </el-select>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row><el-col :span="8"><el-form-item label="员工状态">
-                    <el-radio-group v-model="collectForm.state">
-                        <el-radio label="停用"></el-radio>
-                        <el-radio label="启用"></el-radio>
-                    </el-radio-group>
-                </el-form-item></el-col></el-row>
-                 <el-row><el-col :span="8"><el-form-item label="在职情况">
-                    <el-radio-group v-model="collectForm.job">
-                        <el-radio label="在职"></el-radio>
-                        <el-radio label="离职"></el-radio>
-                    </el-radio-group>
-                </el-form-item></el-col></el-row>
-                <el-row><el-col :span="8"><el-form-item label="用户名"><el-input v-model="collectForm.bankAccountName" placeholder="请输入用户名"></el-input></el-form-item></el-col></el-row>
-                <el-row><el-col :span="8"><el-form-item label="角色"><el-input v-model="collectForm.bank" placeholder="请输入角色"></el-input></el-form-item></el-col></el-row>
-                <el-row><el-col :span="8"><el-form-item label="备注">
-                    <el-input type="textarea" rows="4" v-model="collectForm.memo" placeholder="请填写机构备注"></el-input>
-                </el-form-item></el-col></el-row>
                 <el-row class="formFooter"><el-button>取消</el-button><el-button type="primary">提交</el-button></el-row>
             </el-form>
         </div>
@@ -59,10 +28,10 @@
 <script>
 import { fetchData } from '../../api/index';
 export default {
-    name: 'asPackInfo',
+    name: 'roleEditInfo',
     data() {
         return {
-            str: '新建用户',
+            str: '新建角色',
             height: '',
             rules: {},
             collectForm: {
@@ -79,14 +48,19 @@ export default {
                 gender:'男',
                 job:'在职'
             },
+            props: {
+                label: 'name',
+                children: 'zones'
+            },
+            count: 1
         }
     },
     created() {
         this.height = 'minHeight:'+(this.$store.state.documentClientHeight-185)+'px';
     },
     mounted() {
-        if (this.$route.fullPath == '/updatUser') {
-            this.str = '编辑用户'
+        if (this.$route.fullPath == '/updatRole') {
+            this.str = '编辑角色'
             this.getList(this.$route.params.index);
         }
     },
@@ -97,6 +71,42 @@ export default {
                 this.collectForm = res.list[id];
             })
         },
+      handleCheckChange(data, checked, indeterminate) {
+        console.log(data, checked, indeterminate);
+      },
+      handleNodeClick(data) {
+        console.log(data);
+      },
+      loadNode(node, resolve) {
+        if (node.level === 0) {
+          return resolve([{ name: '案件管理' }, { name: '案件管理1' }]);
+        }
+        if (node.level > 3) return resolve([]);
+
+        var hasChild;
+        if (node.data.name === '案件管理') {
+          hasChild = true;
+        } else if (node.data.name === '案件管理1') {
+          hasChild = false;
+        } else {
+          hasChild = Math.random() > 0.5;
+        }
+
+        setTimeout(() => {
+          var data;
+          if (hasChild) {
+            data = [{
+              name: '案件管理' + this.count++
+            }, {
+              name: '案件管理' + this.count++
+            }];
+          } else {
+            data = [];
+          }
+
+          resolve(data);
+        }, 500);
+      }
     }
 }
 </script>
@@ -118,5 +128,9 @@ export default {
 }
 .el-form-item__label{
     font-weight: 550;
+}
+.el-tree {
+    border: 1px solid #DCDFE6;
+    min-height: 200px;
 }
 </style>

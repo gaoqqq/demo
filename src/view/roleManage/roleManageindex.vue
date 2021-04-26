@@ -3,16 +3,8 @@
         <div class="cond-header">
         <el-form ref="conditionForm" :model="conditionForm" label-width="100px">
             <el-row>
-            <el-col :span="6"><el-form-item label="资产包名称"><el-input placeholder="请输入资产包名称" class="cond-input"></el-input></el-form-item></el-col>
-            <el-col :span="6"><el-form-item label="转让方名称"><el-input placeholder="请输入转让方名称" class="cond-input"></el-input></el-form-item></el-col>
-            <el-col :span="6">
-                <el-form-item label="资产包状态">
-                    <el-select v-model="conditionForm.name" placeholder="请选择资产包状态" class="handle-select mr10">
-                        <el-option key="1" label="结项" value="结项"></el-option>
-                        <el-option key="2" label="进行中" value="进行中"></el-option>
-                    </el-select>
-                </el-form-item>
-            </el-col>
+            <el-col :span="6"><el-form-item label="角色名称"><el-input placeholder="请输入角色名称" class="cond-input"></el-input></el-form-item></el-col>
+            
             <el-col :span="6">
                 <el-button type="primary" plain>查询</el-button>
                 <el-button type="info" plain>重置</el-button>
@@ -29,25 +21,13 @@
                 ref="multipleTable"
                 header-cell-class-name="table-header"
             >
-                <el-table-column prop="agencyNo" label="资产包编号" align="center"></el-table-column>
-                <el-table-column prop="agencyName" label="转让方名称" align="center"></el-table-column>
-                <el-table-column prop="head" label="转让方负责人" align="center"></el-table-column>
-                <el-table-column prop="contact" label="转让方机构" align="center"></el-table-column>
-                <el-table-column prop="office" label="我方负责人" align="center"></el-table-column>
-                <el-table-column label="状态" align="center">
-                    <template slot-scope="scope">
-                        <span :class="scope.row.state==='启用'?'green':'red'">{{scope.row.state}}</span>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="createTime" label="提交时间" align="center"></el-table-column>
+                <el-table-column prop="agencyNo" label="角色名称" align="center"></el-table-column>
+                <el-table-column prop="agencyName" label="总人数" align="center"></el-table-column>
+                <el-table-column prop="head" label="角色描述" align="center"></el-table-column>
+                <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
 
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
-                        <el-button
-                            type="text"
-                            class="gray"
-                            @click="handleDeta(scope.$index, scope.row)"
-                        >查看</el-button>
                         <el-button
                             type="text"
                             @click="handleEdit(scope.$index)"
@@ -76,7 +56,7 @@
 <script>
 import { fetchData } from '../../api/index';
 export default {
-    name: 'asPack',
+    name: 'role',
     data() {
         return {
             conditionForm: { name:'',pageIndex:1,pageSize:10 },
@@ -102,21 +82,21 @@ export default {
         },
         addCollec() {//新增
             this.$router.push({
-                path: '/addAssetPac'
+                path: '/addRole'
             })
         },
         handleEdit(index) {//编辑
             this.$router.push({
-                name: 'updataAssetPackage',
+                name: 'updatRole',
                 params: {index: index}
             })
         },
-        handleDeta(index,row) {//查看
-            this.$router.push({
-                name: 'asPackageDetails',
-                params: {index: index}
-            })
-        },
+        // handleDeta(index,row) {//查看
+        //     this.$router.push({
+        //         name: 'asPackageDetails',
+        //         params: {index: index}
+        //     })
+        // },
         // 分页导航
         handlePageChange(val) {
             this.$set(this.conditionForm, 'pageIndex', val);

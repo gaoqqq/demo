@@ -123,18 +123,29 @@ export default new Router({
                 {
                     path: '/addUser',
                     component: () => import(/* webpackChunkName: "dashboard" */ '../view/userManage/userManageInfoHandle.vue'),
-                    meta: { title: '新建用户管理' }
+                    meta: { title: '新建用户' }
                 },
                 {
                     path: '/updatUser',
                     name: 'updatUser',
                     component: () => import(/* webpackChunkName: "dashboard" */ '../view/userManage/userManageInfoHandle.vue'),
-                    meta: { title: '编辑用户管理' }
+                    meta: { title: '编辑用户' }
                 },
                 {
                     path: '/roleIndex',
                     component: () => import(/* webpackChunkName: "dashboard" */ '../view/roleManage/roleManageindex.vue'),
                     meta: { title: '角色管理' }
+                },
+                {
+                    path: '/addRole',
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../view/roleManage/roleManageInfoHandle.vue'),
+                    meta: { title: '新建角色' }
+                },
+                {
+                    path: '/updatRole',
+                    name: 'updatRole',
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../view/roleManage/roleManageInfoHandle.vue'),
+                    meta: { title: '编辑角色' }
                 },
                 {
                     path: '/caseIndex',
