@@ -9,7 +9,9 @@
             "contact": "13651350908",
             "office": "沈阳市和平区3号院",
             "state": "启用",
-            "createTime": "2020-03-01 15:00"
+            "createTime": "2020-03-01 15:00",
+            "gender":"男",
+            "job":"在职"
         },
         {
             "agencyNo": "0035433",
@@ -21,7 +23,9 @@
             "contact": "13651350908",
             "office": "北京市曙光西里",
             "state": "停用",
-            "createTime": "2020-03-02 12:00"
+            "createTime": "2020-03-02 12:00",
+            "gender":"男",
+            "job":"在职"
         },
         {
             "agencyNo": "0035434",
@@ -33,7 +37,9 @@
             "contact": "13651350908",
             "office": "北京市中关村东路1号院",
             "state": "启用",
-            "createTime": "2020-05-02 12:00"
+            "createTime": "2020-05-02 12:00",
+            "gender":"女",
+            "job":"离职"
         }
     ],
     "pageTotal": 3
