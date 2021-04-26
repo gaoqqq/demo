@@ -90,6 +90,21 @@ export default {
                         }
                     ]
                 },
+                   {
+                    icon: 'el-icon-lx-people',
+                    index: '4',
+                    title: '用户管理',
+                    subs: [
+                        {
+                            index: 'userIndex',
+                            title: '用户管理'
+                        },
+                        {
+                            index: 'roleIndex',
+                            title: '角色管理'
+                        },
+                    ]
+                },
                 {
                     icon: 'el-icon-lx-emoji',
                     index: 'icon',

@@ -115,6 +115,28 @@ export default new Router({
                     component: () => import(/* webpackChunkName: "dashboard" */ '../view/litig/litigInfoDetail.vue'),
                     meta: { title: '诉讼记录' }
                 },
+                {
+                    path: '/userIndex',
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../view/userManage/userManageindex.vue'),
+                    meta: { title: '用户管理' }
+                },
+                {
+                    path: '/addUser',
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../view/userManage/userManageInfoHandle.vue'),
+                    meta: { title: '新建用户管理' }
+                },
+                {
+                    path: '/updatUser',
+                    name: 'updatUser',
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../view/userManage/userManageInfoHandle.vue'),
+                    meta: { title: '编辑用户管理' }
+                },
+                {
+                    path: '/roleIndex',
+                    component: () => import(/* webpackChunkName: "dashboard" */ '../view/roleManage/roleManageindex.vue'),
+                    meta: { title: '角色管理' }
+                },
+              
                 // end
 
 
