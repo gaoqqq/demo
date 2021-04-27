@@ -35,11 +35,11 @@
                 ref="multipleTable"
                 header-cell-class-name="table-header"
             >
-                <el-table-column prop="agencyNo" label="用户名称" align="center"></el-table-column>
-                <el-table-column prop="agencyName" label="性别" align="center"></el-table-column>
-                <el-table-column prop="head" label="角色" align="center"></el-table-column>
+                <el-table-column prop="userName" label="用户名称" align="center"></el-table-column>
+                <el-table-column prop="gender" label="性别" align="center"></el-table-column>
+                <el-table-column prop="role" label="角色" align="center"></el-table-column>
                 <el-table-column prop="contact" label="联系方式" align="center"></el-table-column>
-                <el-table-column prop="office" label="在职情况" align="center"></el-table-column>
+                <el-table-column prop="job" label="在职情况" align="center"></el-table-column>
                 <el-table-column label="状态" align="center">
                     <template slot-scope="scope">
                         <span :class="scope.row.state==='启用'?'green':'red'">{{scope.row.state}}</span>
@@ -77,9 +77,9 @@
                 ></el-pagination>
             </div>
         </div>
-        <el-dialog :title="editform.head" :visible.sync="editVisible" width="60%" top="3%">
+        <el-dialog :title="editform.userName1" :visible.sync="editVisible" width="60%" top="3%">
             <el-form ref="form" :model="editform" label-width="80px" label-position="left">
-                <el-row><el-col :span="20"><el-form-item label="身份证号"><span style="margin-left:1px;">{{editform.bankAccount}}</span></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20"><el-form-item label="身份证号"><span style="margin-left:1px;">{{editform.numId}}</span></el-form-item></el-col></el-row>
                 <el-row><el-col :span="20"><el-form-item label="性别" prop="gender">
                     <el-radio-group v-model="editform.gender">
                         <el-radio label="男"></el-radio>
@@ -87,8 +87,8 @@
                     </el-radio-group>
                 </el-form-item></el-col></el-row>
                  <el-row><el-col :span="20"><el-form-item label="手机号码" prop="contact"><el-input v-model="editform.contact" placeholder="请输入手机号码"></el-input></el-form-item></el-col></el-row>
-                <el-row><el-col :span="20"><el-form-item label="员工类型" prop="bankAccountName"><el-input v-model="editform.bankAccountName" placeholder="请输入员工类型"></el-input></el-form-item></el-col></el-row>
-                <el-row><el-col :span="20"><el-form-item label="所属团队" prop="bank"><el-input v-model="editform.bank" placeholder="请输入所属团队"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20"><el-form-item label="员工类型" prop="type"><el-input v-model="editform.type" placeholder="请输入员工类型"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20"><el-form-item label="所属团队" prop="team"><el-input v-model="editform.team" placeholder="请输入所属团队"></el-input></el-form-item></el-col></el-row>
                <el-row><el-col :span="20"><el-form-item label="员工状态" prop="state">
                     <el-radio-group v-model="editform.state">
                         <el-radio label="启用"></el-radio>
@@ -102,9 +102,9 @@
                     </el-radio-group>
                 </el-form-item></el-col></el-row>
 
-                <el-row><el-col :span="20"><el-form-item label="用户名" prop="head"><el-input v-model="editform.head" placeholder="请输入用户名"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20"><el-form-item label="用户名" prop="userName"><el-input v-model="editform.userName" placeholder="请输入用户名"></el-input></el-form-item></el-col></el-row>
                
-                <el-row><el-col :span="20"><el-form-item label="角色" prop="office"><el-input v-model="editform.office" placeholder="请填角色"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="20"><el-form-item label="角色" prop="office"><el-input v-model="editform.role" placeholder="请填角色"></el-input></el-form-item></el-col></el-row>
                 <el-row><el-col :span="20"><el-form-item label="备注" prop="memo">
                     <el-input type="textarea" rows="4" v-model="editform.memo" placeholder="请填写机构备注"></el-input>
                 </el-form-item></el-col></el-row>
@@ -124,18 +124,19 @@ export default {
             height: '',
             editVisible: false,
             editform: {
-                agencyNo: '',
-                agencyName: '',
+                userName: '',
+                gender: '',
                 state: '',
-                bankAccountName: '',
-                bank: '',
-                bankAccount: '',
+                type: '',
+                team: '',
+                numId: '',
                 head: '',
                 contact: '',
                 office: '',
                 memo: '',
                 gender:'',
-                job:''
+                job:'',
+                role:''
             }
         }
     },
@@ -167,7 +168,7 @@ export default {
         },
          handleDeta(index,row) {//查看
             this.editform = {...row};
-            this.editform.head = '姓名:'+this.editform.head;
+            this.editform.userName1 = '姓名:'+this.editform.userName1;
             this.editVisible = true;
         },
         // 分页导航

@@ -21,9 +21,9 @@
                 ref="multipleTable"
                 header-cell-class-name="table-header"
             >
-                <el-table-column prop="agencyNo" label="角色名称" align="center"></el-table-column>
-                <el-table-column prop="agencyName" label="总人数" align="center"></el-table-column>
-                <el-table-column prop="head" label="角色描述" align="center"></el-table-column>
+                <el-table-column prop="userName" label="角色名称" align="center"></el-table-column>
+                <el-table-column prop="totlal" label="总人数" align="center"></el-table-column>
+                <el-table-column prop="role" label="角色描述" align="center"></el-table-column>
                 <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
 
                 <el-table-column label="操作" width="180" align="center">

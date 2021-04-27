@@ -46,16 +46,16 @@
                 ref="multipleTable"
                 header-cell-class-name="table-header"
             >
-                <el-table-column prop="agencyNo" label="客户名称" align="center"></el-table-column>
-                <el-table-column prop="agencyName" label="合同号" align="center"></el-table-column>
+                <el-table-column prop="userName" label="客户名称" align="center"></el-table-column>
+                <el-table-column prop="ht" label="合同号" align="center"></el-table-column>
                 <el-table-column label="已拖欠" align="center">
-                    <template slot-scope="scope"><span class="red">{{scope.row.head}}</span></template>
+                    <template slot-scope="scope"><span class="red">{{scope.row.money}}</span></template>
                 </el-table-column>
-                <el-table-column prop="contact" label="已预期" align="center"></el-table-column>
-                <el-table-column prop="office" label="证件号" align="center"></el-table-column>
+                <el-table-column prop="day" label="已预期" align="center"></el-table-column>
+                <el-table-column prop="numId1" label="证件号" align="center"></el-table-column>
                 <el-table-column label="是否失联" align="center">
                     <template>
-                        <!-- <span :class="scope.row.state==='未失联'?'green':'red'">{{scope.row.state}}</span> -->
+                        <!-- <span :class="scope.row.sl==='未失联'?'green':'red'">{{scope.row.sl}}</span> -->
                     </template>
                 </el-table-column>
 
@@ -88,7 +88,12 @@ export default {
     data() {
         return {
             radio: '1',
-            conditionForm: { name:'',pageIndex:1,pageSize:10 },
+            conditionForm: { 
+                name:'',
+                pageIndex:1,
+                pageSize:10,
+                userName:'', 
+               },
             tableData: [],
             pageTotal: 0,
             height: '',

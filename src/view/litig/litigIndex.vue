@@ -33,13 +33,13 @@
             >   
                 <el-table-column type="selection" width="40"></el-table-column>
                 <el-table-column label="客户名称" align="center">
-                    <template slot-scope="scope"><span class="userName">{{scope.row.agencyNo}}</span></template>
+                    <template slot-scope="scope"><span class="userName">{{scope.row.userName}}</span></template>
                 </el-table-column>
-                <el-table-column prop="agencyName" label="合同号" align="center"></el-table-column>
-                <el-table-column prop="head" label="诉讼进程" align="center"></el-table-column>
-                <el-table-column prop="contact" label="立案案号" align="center"></el-table-column>
+                <el-table-column prop="ht" label="合同号" align="center"></el-table-column>
+                <el-table-column prop="jc" label="诉讼进程" align="center"></el-table-column>
+                <el-table-column prop="lah" label="立案案号" align="center"></el-table-column>
                 <el-table-column prop="createTime" label="立案时间" align="center"></el-table-column>
-                <el-table-column prop="office" label="立案法院" align="center"></el-table-column>
+                <el-table-column prop="fy" label="立案法院" align="center"></el-table-column>
 
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
@@ -79,7 +79,13 @@ export default {
     name: 'litig',
     data() {
         return {
-            conditionForm: { name:'',pageIndex:1,pageSize:10 },
+            conditionForm: { 
+                name:'',
+                pageIndex:1,
+                pageSize:10 ,
+                userName:'',
+                ht:""
+                },
             tableData: [],
             pageTotal: 0,
             height: '',

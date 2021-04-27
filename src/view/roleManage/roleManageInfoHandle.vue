@@ -3,9 +3,9 @@
         <t-title :titleText="str"></t-title>
         <div class="cond-body" :style="height">
             <el-form :model="collectForm" :rules="rules" ref="ruleForm" label-width="120px" label-position="left" class="demo-ruleForm">
-                <el-row><el-col :span="8"><el-form-item label="角色名称"><el-input v-model="collectForm.agencyName" placeholder="请填写姓名"></el-input></el-form-item></el-col></el-row>
+                <el-row><el-col :span="8"><el-form-item label="角色名称"><el-input v-model="collectForm.role" placeholder="请填写姓名"></el-input></el-form-item></el-col></el-row>
                 <el-row><el-col :span="8"><el-form-item label="角色描述">
-                    <el-input type="textarea" rows="4" v-model="collectForm.memo" placeholder="请填写角色描述"></el-input>
+                    <el-input type="textarea" rows="4" v-model="collectForm.role" placeholder="请填写角色描述"></el-input>
                 </el-form-item></el-col></el-row>
                 <el-row>
                     <el-col :span="8">
@@ -36,7 +36,7 @@ export default {
             rules: {},
             collectForm: {
                 agencyNo: '037692',
-                agencyName: '',
+                role: '',
                 bankAccountName: '',
                 bank: '',
                 bankAccount: '',
